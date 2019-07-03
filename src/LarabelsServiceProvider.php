@@ -1,60 +1,91 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sandulat\Larabels;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
-class LarabelsServiceProvider extends ServiceProvider
+final class LarabelsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'larabels');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'larabels');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        if (config('larabels.enabled')) {
+            $this->registerRoutes();
+
+            $this->registerViews();
+        }
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('larabels.php'),
-            ], 'config');
+            ], 'larabels-config');
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/larabels'),
-            ], 'views');*/
+            $this->publishes([
+                __DIR__.'/../public' => public_path('vendor/larabels'),
+            ], 'larabels-assets');
 
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/larabels'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/larabels'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+            $this->publishes([
+                __DIR__.'/../stubs/LarabelsServiceProvider.stub' => app_path('Providers/LarabelsServiceProvider.php'),
+            ], 'larabels-provider');
         }
     }
 
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
-        // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'larabels');
 
-        // Register the main class to use with the facade
+        $this->commands([
+            Console\InstallCommand::class,
+            Console\PublishCommand::class,
+        ]);
+
         $this->app->singleton('larabels', function () {
             return new Larabels;
         });
+    }
+
+
+    /**
+     * Register the package routes.
+     *
+     * @return void
+     */
+    private function registerRoutes(): void
+    {
+        Route::group($this->routeConfiguration(), function () {
+            $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+        });
+    }
+
+    /**
+     * Get the main route group configuration array.
+     *
+     * @return array
+     */
+    private function routeConfiguration(): array
+    {
+        return [
+            'namespace' => 'Sandulat\Larabels\Http\Controllers',
+            'prefix' => config('larabels.path'),
+            'middleware' => array_merge(config('larabels.middleware'), ['web']),
+        ];
+    }
+
+    /**
+     * Register the package views.
+     *
+     * @return array
+     */
+    private function registerViews(): void
+    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'larabels');
     }
 }

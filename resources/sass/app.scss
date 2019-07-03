@@ -1,0 +1,13 @@
+@import 'tailwind';
+
+[v-cloak] {
+    display: none;
+}
+
+.btn {
+    @apply rounded border text-sm px-2 py-2 uppercase font-medium;
+
+    @screen md {
+        @apply px-10;
+    }
+}

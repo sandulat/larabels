@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Gate;
+use Sandulat\Larabels\LarabelsApplicationServiceProvider;
+
+class LarabelsServiceProvider extends LarabelsApplicationServiceProvider
+{
+    /**
+     * Register the Larabels gate.
+     *
+     * This gate determines who can access Larabels in non-local environments.
+     *
+     * @return void
+     */
+    protected function gate()
+    {
+        Gate::define('viewLarabels', function ($user) {
+            return in_array($user->email, [
+                //
+            ]);
+        });
+    }
+}
