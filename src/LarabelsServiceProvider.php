@@ -14,11 +14,9 @@ final class LarabelsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('larabels.enabled')) {
-            $this->registerRoutes();
+        $this->registerRoutes();
 
-            $this->registerViews();
-        }
+        $this->registerViews();
 
         if ($this->app->runningInConsole()) {
             $this->publishes([

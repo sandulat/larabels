@@ -1,13 +1,9 @@
 @import 'tailwind';
 
-[v-cloak] {
-    display: none;
-}
-
-.btn {
-    @apply rounded border text-sm px-2 py-2 uppercase font-medium;
+.larabels-btn {
+    @apply larabels-rounded larabels-border larabels-text-sm larabels-px-2 larabels-py-2 larabels-uppercase larabels-font-medium;
 
     @screen md {
-        @apply px-10;
+        @apply larabels-px-10;
     }
 }

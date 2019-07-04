@@ -15,15 +15,13 @@ final class LabelsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Sandulat\Larabels\Larabels $larabels
      * @return \Illuminate\View\View
      */
-    public function index(Larabels $larabels): View
+    public function index(): View
     {
-        return view('larabels::home')->with([
-            'locales' => $larabels->labels(),
-            'labelsHaveChanges' => $larabels->labelsHaveChanges(),
-        ]);
+        abort_unless(config('larabels.enabled'), 404);
+
+        return view('larabels::home');
     }
 
     /**

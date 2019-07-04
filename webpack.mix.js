@@ -2,6 +2,7 @@ const path = require('path');
 const mix = require('laravel-mix');
 const webpack = require('webpack');
 const tailwindcss = require('tailwindcss');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,28 +16,19 @@ const tailwindcss = require('tailwindcss');
  */
 
 mix.options({
-    uglify: {
-        uglifyOptions: {
-            compress: {
-                drop_console: true,
-            },
-        },
+  uglify: {
+    uglifyOptions: {
+      compress: {
+        drop_console: true,
+      },
     },
+  },
 })
-    .setPublicPath('public')
-    .js('resources/js/app.js', 'public/larabels.js')
-    .sass('resources/sass/app.scss', 'public/larabels.css')
-    .options({
-        processCssUrls: false,
-        postCss: [tailwindcss('./tailwind.config.js')],
-    })
-    .version()
-    .webpackConfig({
-        resolve: {
-            symlinks: false,
-            alias: {
-                '@': path.resolve(__dirname, 'resources/js/'),
-            },
-        },
-        plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
-    });
+  .setPublicPath('public')
+  .sass('resources/sass/app.scss', 'public/larabels.css')
+  .options({
+    processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.config.js')],
+  })
+  .version()
+  .purgeCss();

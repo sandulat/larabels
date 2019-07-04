@@ -20,7 +20,7 @@ It automatically parses all languages by folders from `resources/lang` and all l
 Larabels is built to work exclusively with Git. 
 As you've might seen in the screenshot above, we've got 3 buttons fixed to the bottom of screen:
 
-`Save` - all labels from all languages will be exported exported to `resources/lang`.
+`Save` - all labels from all languages will be exported to `resources/lang`.
 
 `Reset` - all the changes exported to `resources/lang` are reverted to original state.
 
@@ -65,10 +65,22 @@ Larabels works without any additional configuration, however it provides a confi
 
 |Option|Default Value|Description|
 |------|-------------|-----------|
-|`enabled`|`env('LARABELS_ENABLED', true)`|This option may be used to disable Larabels entirely.|
+|`enabled`|`env('LARABELS_ENABLED', true)`|This option may be used to disable Larabels direct route access. Note: Larabels views will ignore this option so you can include them in your project.|
 |`middleware`|`[\Sandulat\Larabels\Http\Middleware\Authorize::class]`|These middlewares will be assigned to every Larabels route. Note that in any case Larabels routes implicitly belong to the "web" middleware.|
 |`whitelist`|`[]`|This value determines which localization files should be included in the dashboard. Files will be loaded from `/resources/lang/{locale}`. Use file names without extension: `auth`, `pagination`, `validation`, `passwords`, etc. Leave empty to load all files.|
 |`path`|`/larabels`|This value determines the base route path where the dashboard will be  accessible from.|
+
+## Customization
+If you would like to include the Larabels editor view directly into your personal dashboard, set the environment option `LARABELS_ENABLED` to `false` to disable direct access to the Larabels route. Now add `@include('larabels::app')` wherever you'd like.
+
+Larabels is splitted into partials so you can easily cutomize the look. Inside the path `resources/views` create the folder `vendor/larabels`.
+
+Now you can override the default Larabels views:
+- `components/card.blade.php`
+- `partials/action_buttons.blade.php`
+- `partials/container.blade.php`
+- `partials/label.blade.php`
+- `partials/locale_button.blade.php`
 
 ## Credits
 

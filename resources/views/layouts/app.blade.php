@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Larabels') }} - Labels Dashboard</title>
     <link rel="shortcut icon" href="{{ asset('/vendor/larabels/favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset(mix('larabels.css', 'vendor/larabels')) }}">
 </head>
-<body class="h-full bg-gray-300 font-body px-5 md:px-0">
-    <nav class="container mx-auto border-b border-gray-400 py-5 mb-6">
-        <a href="/" class="tracking-wider mr-1 text-gray-800 font-medium">{{ config('app.name', 'Larabels') }}</a>
-        <sup class="tracking-widest text-white text-xs uppercase bg-indigo-700 px-1 rounded shadow font-medium">Labels</sup>
+<body class="larabels-font-sans larabels-h-full larabels-bg-gray-300 larabels-px-5 md:larabels-px-0">
+    <nav class="larabels-container larabels-mx-auto larabels-border-b larabels-border-gray-400 larabels-py-5 larabels-mb-6">
+        <a href="/" class="larabels-tracking-wider larabels-mr-1 larabels-text-gray-800 larabels-font-medium">{{ config('app.name', 'Larabels') }}</a>
+        <sup class="larabels-tracking-widest larabels-text-white larabels-text-xs larabels-uppercase larabels-bg-indigo-700 larabels-px-1 larabels-rounded larabels-shadow larabels-font-medium">Labels</sup>
     </nav>
-    <main id="app" class="container mx-auto" v-cloak>
+    <main class="larabels-container larabels-mx-auto">
         @if (session()->has('success'))
             @include('larabels::partials.alert_success', ['message' => session()->get('success')])
         @endif
@@ -22,6 +20,5 @@
         @endif
         @yield('content')
     </main>
-    <script src="{{ asset(mix('larabels.js', 'vendor/larabels')) }}"></script>
 </body>
 </html>

@@ -1,11 +1,6 @@
 module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        body: 'Rubik',
-      },
-    },
-  },
+  theme: {},
   variants: {},
   plugins: [],
+  prefix: 'larabels-',
 };
