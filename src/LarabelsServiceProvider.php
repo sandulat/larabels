@@ -73,7 +73,7 @@ final class LarabelsServiceProvider extends ServiceProvider
         return [
             'namespace' => 'Sandulat\Larabels\Http\Controllers',
             'prefix' => config('larabels.path'),
-            'middleware' => array_merge(config('larabels.middleware'), ['web']),
+            'middleware' => array_merge(['web'], config('larabels.middleware')),
         ];
     }
 
