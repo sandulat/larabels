@@ -26,7 +26,7 @@ As you've might seen in the screenshot above, we've got 3 buttons fixed to the b
 
 `Commit & Push` - all the changes are commited and pushed to `origin HEAD`.
 
-Note: you (or the server) must have SSH access to the repository without passphrase.
+Note: you (or the server) must have passwordless push access to the repository.
 
 ## Installation
 
