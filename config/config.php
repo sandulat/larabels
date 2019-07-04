@@ -9,7 +9,9 @@ return [
     | Larabels Activity
     |--------------------------------------------------------------------------
     |
-    | This option may be used to enable and disable Larabels.
+    | This option may be used to disable Larabels direct route access.
+    | Note: Larabels views will ignore this option so you can include them in
+    | your project.
     |
     */
 
