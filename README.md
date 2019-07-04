@@ -3,8 +3,8 @@
 🌍 Larabels - Laravel localization labels dashboard 🌏
 </p>
 <p align="center">
-<img src="https://img.shields.io/github/license/sandulat/larabels.svg">
 <img src="https://img.shields.io/packagist/vpre/sandulat/larabels.svg">
+<img src="https://img.shields.io/github/license/sandulat/larabels.svg">
 <a href="https://twitter.com/intent/follow?screen_name=sandulat">
   <img src="https://img.shields.io/twitter/follow/sandulat.svg?style=social">
 </a>
@@ -14,7 +14,7 @@
 Larabels is an editor for your Laravel localization files.
 
 The main purpose of this package is to allow non-technical
-people commit label updates directly to the repository. 
+people commit label updates directly to the repository in development environments. 
 It automatically parses all languages by folders from `resources/lang` and all localization files from each language.
 
 Larabels is built to work exclusively with Git. 
