@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sandulat\Larabels\Domain;
 
-use Cz\Git\GitRepository as GitRepo;
 use Illuminate\Support\Str;
+use Cz\Git\GitRepository as GitRepo;
 
 final class GitRepository extends GitRepo
 {
@@ -13,7 +13,7 @@ final class GitRepository extends GitRepo
      * Check if the given path has been changed.
      *
      * @param string $path
-     * @return boolean
+     * @return bool
      */
     public function pathHasChanges(string $path): bool
     {

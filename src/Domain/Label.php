@@ -19,7 +19,7 @@ final class Label
      * @var string
      */
     private $key;
-    
+
     /**
      * Label slug.
      *

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sandulat\Larabels;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 final class LarabelsServiceProvider extends ServiceProvider
 {
@@ -49,7 +49,6 @@ final class LarabelsServiceProvider extends ServiceProvider
             return new Larabels;
         });
     }
-
 
     /**
      * Register the package routes.

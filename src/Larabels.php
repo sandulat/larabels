@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Sandulat\Larabels;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
-use Sandulat\Larabels\Domain\Container;
-use Symfony\Component\Finder\SplFileInfo;
+use Illuminate\Support\Facades\App;
 use Sandulat\Larabels\Domain\Label;
-use Zend\Code\Generator\ValueGenerator;
+use Illuminate\Filesystem\Filesystem;
 use Zend\Code\Generator\FileGenerator;
+use Sandulat\Larabels\Domain\Container;
+use Zend\Code\Generator\ValueGenerator;
+use Symfony\Component\Finder\SplFileInfo;
 use Sandulat\Larabels\Domain\GitRepository;
 
 final class Larabels
@@ -57,11 +57,10 @@ final class Larabels
                     $locale => static::files($path)->mapWithKeys(
                         static function (SplFileInfo $file) use ($path, $locale) {
                             return [
-                                $file->getFilenameWithoutExtension() =>
-                                    static::fileLabels($file, $path, $locale)
+                                $file->getFilenameWithoutExtension() => static::fileLabels($file, $path, $locale),
                             ];
                         }
-                    )
+                    ),
                 ];
             }
         );
@@ -110,7 +109,7 @@ final class Larabels
      */
     private static function fileLabels(SplFileInfo $file, string $path, string $locale): Collection
     {
-        $items = include($path.'/'.$file->getFilename());
+        $items = include $path.'/'.$file->getFilename();
 
         return (new Collection($items))->map(
             static function ($item, $key) use ($file, $locale) {
@@ -153,7 +152,7 @@ final class Larabels
             $exportFile = FileGenerator::fromArray([
                 'body' => 'return '.(new ValueGenerator($labels))->generate().';'.PHP_EOL,
             ]);
-        
+
             (new Filesystem)->put($exportPath, $exportFile->generate());
         });
     }
@@ -189,7 +188,6 @@ final class Larabels
      *
      * @return \Sandulat\Larabels\Domain\GitRepository
      */
-    /** */
     public function commit(): GitRepository
     {
         if (! $this->labelsHaveChanges()) {

@@ -71,7 +71,7 @@ final class Container
         $this->containers = $collection->filter(static function ($item) {
             return is_array($item);
         })->map(function ($item, $key) {
-            return new Container($item, $key, $this->slug);
+            return new self($item, $key, $this->slug);
         });
     }
 
