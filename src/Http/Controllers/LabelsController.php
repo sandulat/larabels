@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Sandulat\Larabels\Http\Controllers;
 
 use Illuminate\View\View;
-use Illuminate\Routing\Controller;
-use Sandulat\Larabels\Larabels;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Sandulat\Larabels\Larabels;
+use Illuminate\Routing\Controller;
+use Illuminate\Http\RedirectResponse;
 
 final class LabelsController extends Controller
 {

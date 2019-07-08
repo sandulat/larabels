@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sandulat\Larabels\Http\Controllers;
 
+use Sandulat\Larabels\Larabels;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
-use Sandulat\Larabels\Larabels;
 
 final class ResetController extends Controller
 {
